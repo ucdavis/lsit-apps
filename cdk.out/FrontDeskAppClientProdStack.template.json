@@ -400,7 +400,7 @@
    "Properties": {
     "Certificates": [
      {
-      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/1a7b4790-62e1-460a-aa90-52d63fda54d9"
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/a238e17f-4f2d-4b26-b157-9733e72d5f95"
      }
     ],
     "DefaultActions": [
@@ -443,7 +443,7 @@
    "Properties": {
     "Certificates": [
      {
-      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/769a7a36-7c92-4536-9699-422c631b35d8"
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/affa98c2-77b9-4942-95c6-350d25193a60"
      }
     ],
     "ListenerArn": {
@@ -459,7 +459,7 @@
    "Properties": {
     "Certificates": [
      {
-      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/1b109b0b-1dca-40cd-82e9-cd1056c03695"
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/8bdad38f-d7e5-4b46-9d46-a79bb5c9ccd4"
      }
     ],
     "ListenerArn": {

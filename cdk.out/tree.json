@@ -6140,7 +6140,7 @@
                   "aws:cdk:cloudformation:props": {
                     "certificates": [
                       {
-                        "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/1a7b4790-62e1-460a-aa90-52d63fda54d9"
+                        "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/a238e17f-4f2d-4b26-b157-9733e72d5f95"
                       }
                     ],
                     "defaultActions": [
@@ -6207,7 +6207,7 @@
                       "aws:cdk:cloudformation:props": {
                         "certificates": [
                           {
-                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/769a7a36-7c92-4536-9699-422c631b35d8"
+                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/affa98c2-77b9-4942-95c6-350d25193a60"
                           }
                         ],
                         "listenerArn": {
@@ -6238,7 +6238,7 @@
                       "aws:cdk:cloudformation:props": {
                         "certificates": [
                           {
-                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/1b109b0b-1dca-40cd-82e9-cd1056c03695"
+                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/8bdad38f-d7e5-4b46-9d46-a79bb5c9ccd4"
                           }
                         ],
                         "listenerArn": {
@@ -26636,7 +26636,7 @@
                       "aws:cdk:cloudformation:props": {
                         "certificates": [
                           {
-                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/68ebd651-0010-4977-91cc-6bdf7f26cf62"
+                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/371f6abf-1096-4385-8534-3e6fea0da989"
                           }
                         ],
                         "listenerArn": {

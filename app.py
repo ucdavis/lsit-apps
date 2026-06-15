@@ -198,7 +198,7 @@ frontdesk_frontend_stack = LSITStack(
             "asac.advisingfrontdesk.lsit.ucdavis.edu",
             "esp.advisingfrontdesk.lsit.ucdavis.edu",
         ],
-        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/1a7b4790-62e1-460a-aa90-52d63fda54d9", "arn:aws:acm:us-west-2:042277129213:certificate/6da950e7-0463-406d-b80f-077d5f20226b"],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/a238e17f-4f2d-4b26-b157-9733e72d5f95", "arn:aws:acm:us-west-2:042277129213:certificate/6da950e7-0463-406d-b80f-077d5f20226b"],
         "is_private": True,
         "additional_https_rule_priorities": [9,10,11,14,15,16,17,19],
         "additional_http_rule_priorities": [9,10,11,14,15,16,17,19],
@@ -225,7 +225,7 @@ LSITStack(
         "https_load_balancer_priority": 2,
         "http_load_balancer_priority": 2,
         "host_headers": ["api.frontdesk.lsit.ucdavis.edu"],
-        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/769a7a36-7c92-4536-9699-422c631b35d8"],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/affa98c2-77b9-4942-95c6-350d25193a60"],
         "is_private": True,
         "resource_multiplier": 8,
         "monitoring_stack": monitoring_stack
@@ -250,7 +250,7 @@ LSITStack(
         "https_load_balancer_priority": 3,
         "http_load_balancer_priority": 3,
         "host_headers": ["websocket.frontdesk.lsit.ucdavis.edu"],
-        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/1b109b0b-1dca-40cd-82e9-cd1056c03695"],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/8bdad38f-d7e5-4b46-9d46-a79bb5c9ccd4"],
         "is_private": True,
         "resource_multiplier": 2,
     },
@@ -857,7 +857,7 @@ ucpath_audit_stack = LSITStack(
         "host_headers": [
             "stage.ucpathaudit.lsit.ucdavis.edu",
         ],
-        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/68ebd651-0010-4977-91cc-6bdf7f26cf62"],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/371f6abf-1096-4385-8534-3e6fea0da989"],
         "is_private": True,
         "monitoring_stack": monitoring_stack
     },
