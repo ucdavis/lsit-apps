@@ -6504,6 +6504,37 @@
                   "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListenerCertificate",
                   "version": "2.151.0"
                 }
+              },
+              "Lsit-comp2ProductionCerttificates1": {
+                "id": "Lsit-comp2ProductionCerttificates1",
+                "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Lsit-comp2ProductionCerttificates1",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Lsit-comp2ProductionCerttificates1/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
+                      "aws:cdk:cloudformation:props": {
+                        "certificates": [
+                          {
+                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/978f7b9c-5ef4-4501-bd36-451a71e85213"
+                          }
+                        ],
+                        "listenerArn": {
+                          "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnListenerCertificate",
+                      "version": "2.151.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListenerCertificate",
+                  "version": "2.151.0"
+                }
               }
             },
             "constructInfo": {
@@ -28719,6 +28750,686 @@
           "CheckBootstrapVersion": {
             "id": "CheckBootstrapVersion",
             "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/CheckBootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnRule",
+              "version": "2.151.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.151.0"
+        }
+      },
+      "LSITComp2AppProdStack": {
+        "id": "LSITComp2AppProdStack",
+        "path": "LSITComp2AppProdStack",
+        "children": {
+          "Lsit-comp2ProductionRole": {
+            "id": "Lsit-comp2ProductionRole",
+            "path": "LSITComp2AppProdStack/Lsit-comp2ProductionRole",
+            "children": {
+              "ImportLsit-comp2ProductionRole": {
+                "id": "ImportLsit-comp2ProductionRole",
+                "path": "LSITComp2AppProdStack/Lsit-comp2ProductionRole/ImportLsit-comp2ProductionRole",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.151.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITComp2AppProdStack/Lsit-comp2ProductionRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "ecs-tasks.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "description": "Allows lsit-comp2-production tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+                          ]
+                        ]
+                      }
+                    ],
+                    "roleName": "Lsit-comp2ProductionECSTaskExecutionRole"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.151.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "LSITComp2AppProdStack/Lsit-comp2ProductionRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LSITComp2AppProdStack/Lsit-comp2ProductionRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": [
+                                "logs:CreateLogStream",
+                                "logs:PutLogEvents"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::GetAtt": [
+                                  "Lsitcomp2ProductionLogGroup8AF7281F",
+                                  "Arn"
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "Lsitcomp2ProductionRoleDefaultPolicy63E1144A",
+                        "roles": [
+                          {
+                            "Ref": "Lsitcomp2ProductionRoleB18C6578"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                      "version": "2.151.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Policy",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-comp2ProductionPolicy": {
+            "id": "Lsit-comp2ProductionPolicy",
+            "path": "LSITComp2AppProdStack/Lsit-comp2ProductionPolicy",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITComp2AppProdStack/Lsit-comp2ProductionPolicy/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                  "aws:cdk:cloudformation:props": {
+                    "policyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "s3:GetBucketLocation",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                          }
+                        },
+                        {
+                          "Action": "s3:GetObject",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::Join": [
+                              "",
+                              [
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                },
+                                "/lsit-comp2/*"
+                              ]
+                            ]
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "policyName": "Lsit-comp2ProductionConfigRead",
+                    "roles": [
+                      {
+                        "Ref": "Lsitcomp2ProductionRoleB18C6578"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Policy",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-comp2ProductionTask": {
+            "id": "Lsit-comp2ProductionTask",
+            "path": "LSITComp2AppProdStack/Lsit-comp2ProductionTask",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITComp2AppProdStack/Lsit-comp2ProductionTask/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::TaskDefinition",
+                  "aws:cdk:cloudformation:props": {
+                    "containerDefinitions": [
+                      {
+                        "cpu": 256,
+                        "essential": true,
+                        "image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/lsit-comp2-production:latest",
+                        "memory": 512,
+                        "name": "lsit-comp2-production",
+                        "portMappings": [
+                          {
+                            "containerPort": 3000,
+                            "hostPort": 3000,
+                            "protocol": "tcp"
+                          }
+                        ],
+                        "logConfiguration": {
+                          "logDriver": "awslogs",
+                          "options": {
+                            "awslogs-group": {
+                              "Ref": "Lsitcomp2ProductionLogGroup8AF7281F"
+                            },
+                            "awslogs-stream-prefix": "lsit-comp2-production",
+                            "awslogs-region": "us-west-2"
+                          }
+                        },
+                        "environmentFiles": [
+                          {
+                            "type": "s3",
+                            "value": {
+                              "Fn::Join": [
+                                "",
+                                [
+                                  "arn:",
+                                  {
+                                    "Ref": "AWS::Partition"
+                                  },
+                                  ":s3:::",
+                                  {
+                                    "Fn::Select": [
+                                      0,
+                                      {
+                                        "Fn::Split": [
+                                          "/",
+                                          {
+                                            "Fn::Select": [
+                                              5,
+                                              {
+                                                "Fn::Split": [
+                                                  ":",
+                                                  {
+                                                    "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  "/lsit-comp2/production.env"
+                                ]
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "cpu": "256",
+                    "executionRoleArn": {
+                      "Fn::GetAtt": [
+                        "Lsitcomp2ProductionRoleB18C6578",
+                        "Arn"
+                      ]
+                    },
+                    "family": "lsit-comp2-production",
+                    "memory": "512",
+                    "networkMode": "awsvpc",
+                    "requiresCompatibilities": [
+                      "FARGATE"
+                    ],
+                    "taskRoleArn": {
+                      "Fn::GetAtt": [
+                        "Lsitcomp2ProductionRoleB18C6578",
+                        "Arn"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.CfnTaskDefinition",
+                  "version": "2.151.0"
+                }
+              },
+              "lsit-comp2-production": {
+                "id": "lsit-comp2-production",
+                "path": "LSITComp2AppProdStack/Lsit-comp2ProductionTask/lsit-comp2-production",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.ContainerDefinition",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecs.FargateTaskDefinition",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-comp2ProductionLogGroup": {
+            "id": "Lsit-comp2ProductionLogGroup",
+            "path": "LSITComp2AppProdStack/Lsit-comp2ProductionLogGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITComp2AppProdStack/Lsit-comp2ProductionLogGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "logGroupName": "/ecs/lsit-comp2-production",
+                    "retentionInDays": 731
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_logs.CfnLogGroup",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_logs.LogGroup",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-comp2ProductionBucket": {
+            "id": "Lsit-comp2ProductionBucket",
+            "path": "LSITComp2AppProdStack/Lsit-comp2ProductionBucket",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-comp2ProductionSecurityGroup": {
+            "id": "Lsit-comp2ProductionSecurityGroup",
+            "path": "LSITComp2AppProdStack/Lsit-comp2ProductionSecurityGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITComp2AppProdStack/Lsit-comp2ProductionSecurityGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "groupDescription": "LSITComp2AppProdStack/Lsit-comp2ProductionSecurityGroup",
+                    "groupName": "lsit-comp2-production",
+                    "securityGroupEgress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "description": "Allow all outbound traffic by default",
+                        "ipProtocol": "-1"
+                      }
+                    ],
+                    "securityGroupIngress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "-1",
+                        "description": "from 0.0.0.0/0:ALL TRAFFIC"
+                      }
+                    ],
+                    "vpcId": {
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
+                  "version": "2.151.0"
+                }
+              },
+              "from NetworkStackLSITZoomQueueSecurityGroup211C7467:3000": {
+                "id": "from NetworkStackLSITZoomQueueSecurityGroup211C7467:3000",
+                "path": "LSITComp2AppProdStack/Lsit-comp2ProductionSecurityGroup/from NetworkStackLSITZoomQueueSecurityGroup211C7467:3000",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroupIngress",
+                  "aws:cdk:cloudformation:props": {
+                    "description": "Load balancer to target",
+                    "fromPort": 3000,
+                    "groupId": {
+                      "Fn::GetAtt": [
+                        "Lsitcomp2ProductionSecurityGroupA4FA2A3A",
+                        "GroupId"
+                      ]
+                    },
+                    "ipProtocol": "tcp",
+                    "sourceSecurityGroupId": {
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueSecurityGroupE353981DGroupId83363471"
+                    },
+                    "toPort": 3000
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroupIngress",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-comp2ProductionService": {
+            "id": "Lsit-comp2ProductionService",
+            "path": "LSITComp2AppProdStack/Lsit-comp2ProductionService",
+            "children": {
+              "Service": {
+                "id": "Service",
+                "path": "LSITComp2AppProdStack/Lsit-comp2ProductionService/Service",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::Service",
+                  "aws:cdk:cloudformation:props": {
+                    "cluster": {
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
+                    },
+                    "deploymentConfiguration": {
+                      "maximumPercent": 200,
+                      "minimumHealthyPercent": 50,
+                      "alarms": {
+                        "alarmNames": [],
+                        "enable": false,
+                        "rollback": false
+                      }
+                    },
+                    "desiredCount": 1,
+                    "enableEcsManagedTags": false,
+                    "healthCheckGracePeriodSeconds": 60,
+                    "launchType": "FARGATE",
+                    "loadBalancers": [
+                      {
+                        "targetGroupArn": {
+                          "Ref": "Lsitcomp2ProductionTargetGroup33CB1625"
+                        },
+                        "containerName": "lsit-comp2-production",
+                        "containerPort": 3000
+                      }
+                    ],
+                    "networkConfiguration": {
+                      "awsvpcConfiguration": {
+                        "assignPublicIp": "DISABLED",
+                        "subnets": [
+                          {
+                            "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1Subnet9B1427EC0A5C574E"
+                          },
+                          {
+                            "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2SubnetE85B5343B420B7B0"
+                          }
+                        ],
+                        "securityGroups": [
+                          {
+                            "Fn::GetAtt": [
+                              "Lsitcomp2ProductionSecurityGroupA4FA2A3A",
+                              "GroupId"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "serviceName": "lsit-comp2-production",
+                    "taskDefinition": {
+                      "Ref": "Lsitcomp2ProductionTaskD895BE85"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.CfnService",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecs.FargateService",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-comp2ProductionCPUAlarm": {
+            "id": "Lsit-comp2ProductionCPUAlarm",
+            "path": "LSITComp2AppProdStack/Lsit-comp2ProductionCPUAlarm",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITComp2AppProdStack/Lsit-comp2ProductionCPUAlarm/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudWatch::Alarm",
+                  "aws:cdk:cloudformation:props": {
+                    "actionsEnabled": true,
+                    "alarmActions": [
+                      {
+                        "Fn::ImportValue": "ECSMonitoringStack:ExportsOutputRefECSAlerts6D168A967C6D2BC9"
+                      }
+                    ],
+                    "alarmName": "Lsit-comp2ProductionCPUAlarm",
+                    "comparisonOperator": "GreaterThanThreshold",
+                    "dimensions": [
+                      {
+                        "name": "ClusterName",
+                        "value": {
+                          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
+                        }
+                      },
+                      {
+                        "name": "ServiceName",
+                        "value": {
+                          "Fn::GetAtt": [
+                            "Lsitcomp2ProductionService0D542EE7",
+                            "Name"
+                          ]
+                        }
+                      }
+                    ],
+                    "evaluationPeriods": 1,
+                    "metricName": "CPUUtilization",
+                    "namespace": "AWS/ECS",
+                    "period": 300,
+                    "statistic": "Average",
+                    "threshold": 75
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudwatch.CfnAlarm",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudwatch.Alarm",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-comp2ProductionTargetGroup": {
+            "id": "Lsit-comp2ProductionTargetGroup",
+            "path": "LSITComp2AppProdStack/Lsit-comp2ProductionTargetGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITComp2AppProdStack/Lsit-comp2ProductionTargetGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "healthCheckPath": "/api/health",
+                    "name": "ecs-lsit-comp2-production-produc",
+                    "port": 80,
+                    "protocol": "HTTP",
+                    "targetGroupAttributes": [
+                      {
+                        "key": "stickiness.enabled",
+                        "value": "false"
+                      }
+                    ],
+                    "targetType": "ip",
+                    "vpcId": {
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnTargetGroup",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationTargetGroup",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-comp2ProductionHttpsListenerRule": {
+            "id": "Lsit-comp2ProductionHttpsListenerRule",
+            "path": "LSITComp2AppProdStack/Lsit-comp2ProductionHttpsListenerRule",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITComp2AppProdStack/Lsit-comp2ProductionHttpsListenerRule/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+                  "aws:cdk:cloudformation:props": {
+                    "actions": [
+                      {
+                        "type": "forward",
+                        "targetGroupArn": {
+                          "Ref": "Lsitcomp2ProductionTargetGroup33CB1625"
+                        }
+                      }
+                    ],
+                    "conditions": [
+                      {
+                        "field": "host-header",
+                        "hostHeaderConfig": {
+                          "values": [
+                            "comp2.lsit.ucdavis.edu"
+                          ]
+                        }
+                      }
+                    ],
+                    "listenerArn": {
+                      "Fn::ImportValue": "FrontDeskAppClientProdStack:ExportsOutputRefFrontdeskappclientProductionHttpsListener997DB417B1FF2EEE"
+                    },
+                    "priority": 20
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnListenerRule",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListenerRule",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-comp2ProductionHttpListenerRule": {
+            "id": "Lsit-comp2ProductionHttpListenerRule",
+            "path": "LSITComp2AppProdStack/Lsit-comp2ProductionHttpListenerRule",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITComp2AppProdStack/Lsit-comp2ProductionHttpListenerRule/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+                  "aws:cdk:cloudformation:props": {
+                    "actions": [
+                      {
+                        "redirectConfig": {
+                          "port": "443",
+                          "statusCode": "HTTP_301",
+                          "protocol": "HTTPS"
+                        },
+                        "type": "redirect"
+                      }
+                    ],
+                    "conditions": [
+                      {
+                        "field": "host-header",
+                        "hostHeaderConfig": {
+                          "values": [
+                            "comp2.lsit.ucdavis.edu"
+                          ]
+                        }
+                      }
+                    ],
+                    "listenerArn": {
+                      "Fn::ImportValue": "FrontDeskAppClientProdStack:ExportsOutputRefFrontdeskappclientProductionHttpListenerCB1B66FAD7846C8A"
+                    },
+                    "priority": 20
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnListenerRule",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListenerRule",
+              "version": "2.151.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "LSITComp2AppProdStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "LSITComp2AppProdStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.3.0"
+            }
+          },
+          "BootstrapVersion": {
+            "id": "BootstrapVersion",
+            "path": "LSITComp2AppProdStack/BootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.151.0"
+            }
+          },
+          "CheckBootstrapVersion": {
+            "id": "CheckBootstrapVersion",
+            "path": "LSITComp2AppProdStack/CheckBootstrapVersion",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnRule",
               "version": "2.151.0"

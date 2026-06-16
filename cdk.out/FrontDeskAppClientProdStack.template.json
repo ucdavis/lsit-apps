@@ -598,6 +598,22 @@
     "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Lsit-coalProductionCerttificates1/Resource"
    }
   },
+  "FrontdeskappclientProductionHttpsListenerLsitcomp2ProductionCerttificates15AAC7C56": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
+   "Properties": {
+    "Certificates": [
+     {
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/978f7b9c-5ef4-4501-bd36-451a71e85213"
+     }
+    ],
+    "ListenerArn": {
+     "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Lsit-comp2ProductionCerttificates1/Resource"
+   }
+  },
   "FrontdeskappclientProductionHttpsListenerRule5CBF48FA": {
    "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
    "Properties": {

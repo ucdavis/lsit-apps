@@ -880,4 +880,32 @@ ScheudledTaskStack(
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
+# LSIT Comp2 Prod
+lsit_comp2_stack = LSITStack(
+    app,
+    "LSITComp2AppProdStack",
+    network_stack.vpc,
+    network_stack.bucket,
+    network_stack.cluster,
+    network_stack.load_balancer,
+    {
+        "app_name": "lsit-comp2",
+        "app_env": "production",
+        "task_port": 3000,
+        "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/lsit-comp2-production:latest",
+        "https_listener": frontdesk_frontend_stack.https_listener,
+        "http_listener": frontdesk_frontend_stack.http_listener,
+        "health_check_path": "/api/health",
+        "https_load_balancer_priority": 20,
+        "http_load_balancer_priority": 20,
+        "host_headers": [
+            "comp2.lsit.ucdavis.edu",
+        ],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/978f7b9c-5ef4-4501-bd36-451a71e85213"],
+        "is_private": True,
+        "monitoring_stack": monitoring_stack
+    },
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
 app.synth()
