@@ -1213,7 +1213,8 @@
       "HostHeaderConfig": {
        "Values": [
         "asac.advisingfrontdesk.lsit.ucdavis.edu",
-        "esp.advisingfrontdesk.lsit.ucdavis.edu"
+        "esp.advisingfrontdesk.lsit.ucdavis.edu",
+        "careercenter.advisingfrontdesk.lsit.ucdavis.edu"
        ]
       }
      }
@@ -1246,7 +1247,8 @@
       "HostHeaderConfig": {
        "Values": [
         "asac.advisingfrontdesk.lsit.ucdavis.edu",
-        "esp.advisingfrontdesk.lsit.ucdavis.edu"
+        "esp.advisingfrontdesk.lsit.ucdavis.edu",
+        "careercenter.advisingfrontdesk.lsit.ucdavis.edu"
        ]
       }
      }
