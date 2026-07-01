@@ -199,7 +199,7 @@ frontdesk_frontend_stack = LSITStack(
             "esp.advisingfrontdesk.lsit.ucdavis.edu",
             "careercenter.advisingfrontdesk.lsit.ucdavis.edu",
         ],
-        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/a238e17f-4f2d-4b26-b157-9733e72d5f95", "arn:aws:acm:us-west-2:042277129213:certificate/6da950e7-0463-406d-b80f-077d5f20226b"],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/91ff795e-0e8e-4e9a-98e5-f6b1d3531232", "arn:aws:acm:us-west-2:042277129213:certificate/8473ef06-4248-46aa-bd64-27c856d4de32"],
         "is_private": True,
         "additional_https_rule_priorities": [9,10,11,14,15,16,17,19],
         "additional_http_rule_priorities": [9,10,11,14,15,16,17,19],
