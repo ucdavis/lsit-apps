@@ -858,7 +858,7 @@ ucpath_audit_stack = LSITStack(
         "host_headers": [
             "stage.ucpathaudit.lsit.ucdavis.edu",
         ],
-        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/371f6abf-1096-4385-8534-3e6fea0da989"],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/113f6cba-a55a-4cc5-96a5-019195c4b528"],
         "is_private": True,
         "monitoring_stack": monitoring_stack
     },
