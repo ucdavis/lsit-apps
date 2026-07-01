@@ -6424,7 +6424,7 @@
                       "aws:cdk:cloudformation:props": {
                         "certificates": [
                           {
-                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/1c9afea1-244f-4e98-a460-7dc585b67205"
+                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/b58d17ae-8b4b-4449-9290-d75d4f32bc09"
                           }
                         ],
                         "listenerArn": {

@@ -634,7 +634,7 @@ qualtrics_tools_stack = LSITStack(
         "host_headers": [
             "qualtricstools.lsit.ucdavis.edu",
         ],
-        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/1c9afea1-244f-4e98-a460-7dc585b67205"],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/b58d17ae-8b4b-4449-9290-d75d4f32bc09"],
         "is_private": True,
         "monitoring_stack": monitoring_stack,
         "resource_multiplier": 2,
