@@ -1,7 +1,7 @@
 {
   "version": "36.0.0",
   "files": {
-    "90e20fae2d828e22c8c1d1a20ab66276202041fc2b2ab5e962b577d0c58d67f4": {
+    "74a6da7aa22bf2b569eecccfe5cf0f5ae83c51b9955e3c67dd7aac09f879a838": {
       "source": {
         "path": "FrontDeskAppClientProdStack.template.json",
         "packaging": "file"
@@ -9,7 +9,7 @@
       "destinations": {
         "042277129213-us-west-2": {
           "bucketName": "cdk-hnb659fds-assets-042277129213-us-west-2",
-          "objectKey": "90e20fae2d828e22c8c1d1a20ab66276202041fc2b2ab5e962b577d0c58d67f4.json",
+          "objectKey": "74a6da7aa22bf2b569eecccfe5cf0f5ae83c51b9955e3c67dd7aac09f879a838.json",
           "region": "us-west-2",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-file-publishing-role-042277129213-us-west-2"
         }
