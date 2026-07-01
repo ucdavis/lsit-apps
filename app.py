@@ -400,7 +400,7 @@ LSITStack(
             "orangecluster.stage.advisingfrontdesk.lsit.ucdavis.edu",
             "our.stage.advisingfrontdesk.lsit.ucdavis.edu"
         ],
-        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/a91a19b0-5ffa-44e0-bbd3-3e0004921e0c", "arn:aws:acm:us-west-2:042277129213:certificate/0ff1a483-9288-451e-859b-3dc06f49c4be"],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/fb44cb3a-36b8-43c5-83d7-6b54326a461b", "arn:aws:acm:us-west-2:042277129213:certificate/08b8b642-5734-4a56-864f-c813aa565c3e"],
         "is_private": True,
         "additional_https_rule_priorities": [8],
         "additional_http_rule_priorities": [8],
