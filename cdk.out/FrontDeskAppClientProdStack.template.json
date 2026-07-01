@@ -603,7 +603,7 @@
    "Properties": {
     "Certificates": [
      {
-      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/978f7b9c-5ef4-4501-bd36-451a71e85213"
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/d0fdf9b0-c1ef-421a-b55c-9d6fe56cc1e9"
      }
     ],
     "ListenerArn": {

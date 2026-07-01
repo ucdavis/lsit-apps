@@ -902,7 +902,7 @@ lsit_comp2_stack = LSITStack(
         "host_headers": [
             "comp2.lsit.ucdavis.edu",
         ],
-        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/978f7b9c-5ef4-4501-bd36-451a71e85213"],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/d0fdf9b0-c1ef-421a-b55c-9d6fe56cc1e9"],
         "is_private": True,
         "monitoring_stack": monitoring_stack
     },
