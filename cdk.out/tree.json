@@ -14422,6 +14422,157 @@
               "version": "2.151.0"
             }
           },
+          "Frontdesk-app-websocketStagingGithubActionsRole": {
+            "id": "Frontdesk-app-websocketStagingGithubActionsRole",
+            "path": "FrontDeskAppWebsocketStagingStack/Frontdesk-app-websocketStagingGithubActionsRole",
+            "children": {
+              "ImportFrontdesk-app-websocketStagingGithubActionsRole": {
+                "id": "ImportFrontdesk-app-websocketStagingGithubActionsRole",
+                "path": "FrontDeskAppWebsocketStagingStack/Frontdesk-app-websocketStagingGithubActionsRole/ImportFrontdesk-app-websocketStagingGithubActionsRole",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.151.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppWebsocketStagingStack/Frontdesk-app-websocketStagingGithubActionsRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRoleWithWebIdentity",
+                          "Condition": {
+                            "StringEquals": {
+                              "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
+                            },
+                            "StringLike": {
+                              "token.actions.githubusercontent.com:sub": "repo:ucdavis/front-desk-app-websocket:*"
+                            }
+                          },
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Federated": "arn:aws:iam::042277129213:oidc-provider/token.actions.githubusercontent.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/EC2InstanceProfileForImageBuilderECRContainerBuilds"
+                          ]
+                        ]
+                      },
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+                          ]
+                        ]
+                      },
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/AWSCodeDeployRoleForECSLimited"
+                          ]
+                        ]
+                      }
+                    ],
+                    "roleName": "Frontdesk-app-websocketStagingGithubActionsRole"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.151.0"
+            }
+          },
+          "Frontdesk-app-websocketStagingGithubPolicy": {
+            "id": "Frontdesk-app-websocketStagingGithubPolicy",
+            "path": "FrontDeskAppWebsocketStagingStack/Frontdesk-app-websocketStagingGithubPolicy",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppWebsocketStagingStack/Frontdesk-app-websocketStagingGithubPolicy/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                  "aws:cdk:cloudformation:props": {
+                    "policyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "s3:GetBucketLocation",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                          }
+                        },
+                        {
+                          "Action": "s3:GetObject",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::Join": [
+                              "",
+                              [
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                },
+                                "/frontdesk-app-websocket/*"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "Action": "ecs:UpdateService",
+                          "Effect": "Allow",
+                          "Resource": "*"
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "policyName": "Frontdesk-app-websocketStagingGithubPolicy",
+                    "roles": [
+                      {
+                        "Ref": "FrontdeskappwebsocketStagingGithubActionsRole4D0E732A"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Policy",
+              "version": "2.151.0"
+            }
+          },
           "Frontdesk-app-websocketStagingTask": {
             "id": "Frontdesk-app-websocketStagingTask",
             "path": "FrontDeskAppWebsocketStagingStack/Frontdesk-app-websocketStagingTask",

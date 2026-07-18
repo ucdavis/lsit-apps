@@ -451,6 +451,7 @@ LSITStack(
         "host_headers": ["stage.websocket.frontdesk.lsit.ucdavis.edu"],
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/5c266a52-ea05-4635-8c1a-30b77654390a"],
         "is_private": True,
+        "git_repo": "front-desk-app-websocket"
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )

@@ -34,6 +34,7 @@ class LSITStack(Stack):
         command = app_props.get("command")
         public_facing = app_props.get("is_public_facing", True)
         auto_scaling = app_props.get("auto_scaling", False)
+        git_repo = app_props.get("git_repo")
 
         if not cluster:    
             cluster_name = task_name
@@ -77,6 +78,61 @@ class LSITStack(Stack):
                 resources=["{bucket}/{app_name}/*".format(app_name=app_name,bucket=env_bucket_arn)]
             )
         )
+
+        if git_repo:
+            # Define the Federated Principal
+            github_principal = iam.FederatedPrincipal(
+                federated="arn:aws:iam::042277129213:oidc-provider/token.actions.githubusercontent.com",
+                conditions={
+                    "StringEquals": {
+                        "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
+                    },
+                    "StringLike": {
+                        "token.actions.githubusercontent.com:sub": "repo:ucdavis/{git_repo}:*".format(git_repo=git_repo)
+                    }
+                },
+                assume_role_action="sts:AssumeRoleWithWebIdentity"
+            )
+
+            # Create the Role
+            github_role = iam.Role(
+                self,
+                "{app_prefix}GithubActionsRole".format(app_prefix=app_prefix),
+                assumed_by=github_principal,
+                role_name="{app_prefix}GithubActionsRole".format(app_prefix=app_prefix),
+                managed_policies=[
+                    iam.ManagedPolicy.from_aws_managed_policy_name("EC2InstanceProfileForImageBuilderECRContainerBuilds"),iam.ManagedPolicy.from_aws_managed_policy_name("EC2InstanceProfileForImageBuilderECRContainerBuilds"),
+                    iam.ManagedPolicy.from_aws_managed_policy_name("service-role/AmazonECSTaskExecutionRolePolicy"),
+                    iam.ManagedPolicy.from_aws_managed_policy_name("AWSCodeDeployRoleForECSLimited"),    
+                ],
+            )
+
+            github_policy = iam.Policy(
+                self,
+                "{app_prefix}GithubPolicy".format(app_prefix=app_prefix),
+                force=True,
+                policy_name="{app_prefix}GithubPolicy".format(app_prefix=app_prefix),
+                roles=[github_role]
+            )
+
+            github_policy.add_statements(
+                iam.PolicyStatement(
+                    actions=["s3:GetBucketLocation"],
+                    resources=[env_bucket_arn]
+                ),
+                iam.PolicyStatement(
+                    actions=["s3:GetObject"],
+                    resources=["{bucket}/{app_name}/*".format(app_name=app_name,bucket=env_bucket_arn)]
+                ),
+                iam.PolicyStatement(
+                    actions=["s3:GetBucketLocation"],
+                    resources=[env_bucket_arn]
+                ),    
+                iam.PolicyStatement(
+                    actions=["ecs:UpdateService"],
+                    resources=["*"]
+                ),               
+            )
 
         task = ecs.FargateTaskDefinition(
             self,

@@ -109,6 +109,119 @@
     "aws:cdk:path": "FrontDeskAppWebsocketStagingStack/Frontdesk-app-websocketStagingPolicy/Resource"
    }
   },
+  "FrontdeskappwebsocketStagingGithubActionsRole4D0E732A": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRoleWithWebIdentity",
+       "Condition": {
+        "StringEquals": {
+         "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
+        },
+        "StringLike": {
+         "token.actions.githubusercontent.com:sub": "repo:ucdavis/front-desk-app-websocket:*"
+        }
+       },
+       "Effect": "Allow",
+       "Principal": {
+        "Federated": "arn:aws:iam::042277129213:oidc-provider/token.actions.githubusercontent.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/EC2InstanceProfileForImageBuilderECRContainerBuilds"
+       ]
+      ]
+     },
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+       ]
+      ]
+     },
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/AWSCodeDeployRoleForECSLimited"
+       ]
+      ]
+     }
+    ],
+    "RoleName": "Frontdesk-app-websocketStagingGithubActionsRole"
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppWebsocketStagingStack/Frontdesk-app-websocketStagingGithubActionsRole/Resource"
+   }
+  },
+  "FrontdeskappwebsocketStagingGithubPolicy9B9F04D5": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:GetBucketLocation",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+       }
+      },
+      {
+       "Action": "s3:GetObject",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+          },
+          "/frontdesk-app-websocket/*"
+         ]
+        ]
+       }
+      },
+      {
+       "Action": "ecs:UpdateService",
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "Frontdesk-app-websocketStagingGithubPolicy",
+    "Roles": [
+     {
+      "Ref": "FrontdeskappwebsocketStagingGithubActionsRole4D0E732A"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppWebsocketStagingStack/Frontdesk-app-websocketStagingGithubPolicy/Resource"
+   }
+  },
   "FrontdeskappwebsocketStagingTask00F3E563": {
    "Type": "AWS::ECS::TaskDefinition",
    "Properties": {
